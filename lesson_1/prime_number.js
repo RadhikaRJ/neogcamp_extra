@@ -77,4 +77,5 @@ var date = finalday+finalmonth;
 return date;
 }
 var finaldate=getyearfromDOB(dob)
+//console.log("finaldate: "+finaldate);
 primeNumberChecker(finaldate);
