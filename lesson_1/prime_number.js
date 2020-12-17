@@ -7,6 +7,17 @@ var username = readlineSync.question(chalk.white.bgMagenta.bold("Welcome! \n Ple
 console.log(chalk.white.bgMagenta.bold("\n Enter the date in following format:\n DD/MM \n 25/12\n"))
 dob=readlineSync.question(chalk.white.bgMagenta.bold("\nEnter your date of birth in above mentioned format: "))
 
+dob=setDate(dob);
+
+function getyearfromDOB(dob){
+var [finalday,finalmonth]=dob.toString().split("/");
+
+var date = finalday+finalmonth;
+return date;
+}
+var finaldate=getyearfromDOB(dob)
+//console.log("finaldate: "+finaldate);
+primeNumberChecker(finaldate);
 
 function checkDateInput(date)
 {
@@ -68,14 +79,3 @@ function primeNumberChecker(finaldate){
   
 }
 
-dob=setDate(dob);
-
-function getyearfromDOB(dob){
-var [finalday,finalmonth]=dob.toString().split("/");
-
-var date = finalday+finalmonth;
-return date;
-}
-var finaldate=getyearfromDOB(dob)
-//console.log("finaldate: "+finaldate);
-primeNumberChecker(finaldate);
