@@ -1,25 +1,44 @@
 var readlineSync = require('readline-sync');
 var chalk =require('chalk')
+
 var username = readlineSync.question(chalk.white.bgBlue.bold("Welcome! \n Please enter your name to proceed towards checking if you are born in a leap year \n"));
-//var year = readlineSync.question(chalk.white.bgBlue.bold("Thanks "+username+" Enter your birth year to check if it was a leap year or not.\n Year: "));
 
 
 console.log(chalk.white.bgBlue.bold("\n Enter the date in following format:\n DD-MM-YYYY \n 25-12-2020\n"))
 dob=readlineSync.question(chalk.white.bgBlue.bold("\nEnter your date of birth in above mentioned format: "))
+
+dob=setDate(dob);
+
+var [finalday,finalmonth,finalyear]=dob.toString().split("-");
+leapYearCalc(finalyear);
 
 
 function checkDateInput(date)
 {
   
   var [daycheck,monthcheck,yearcheck]=date.toString().split("-")
-  //console.log("daycheck: "+daycheck+" monthcheck: "+monthcheck+" yearcheck:"+ yearcheck)
-  if(monthcheck===null|| monthcheck==" "||yearcheck==" "||yearcheck===null||daycheck<1||daycheck>31){
+ 
+  if(monthcheck === null ||
+         monthcheck === " " || 
+         yearcheck === " " || 
+         yearcheck === null || 
+         isNaN(daycheck) ===true|| 
+         isNaN(monthcheck)===true||
+         isNaN(yearcheck)||
+         monthcheck <1||
+         monthcheck>12||
+         daycheck<1||
+         daycheck>31||
+         monthcheck==""||
+         daycheck==""||
+         yearcheck==""||(monthcheck==2 && daycheck==30)){
   return false;
   }
   else {
    
     return true;}
 }
+
 
 function setDate(dob)
 {
@@ -31,12 +50,10 @@ function setDate(dob)
     dob=readlineSync.question(chalk.red.bgWhite.bold("\nEnter your date of birth in above mentioned format: \n"));
     
   }
-  return dob;
+  
   }while(flag==false);
-
+return dob;
 }
-
-
 
 
 
@@ -48,13 +65,6 @@ function leapYearCalc(year){
     console.log(chalk.red.bgWhite.bold("\n"+username+", you were not born in a leap year!"));
   }
 }
-dob=setDate(dob);
 
-function getyearfromDOB(dob){
-var [finalday,finalmonth,finalyear]=dob.toString().split("-");
-//console.log("finalday: "+ finalday+" finalmonth: "+finalmonth+" finalyear: "+finalyear)
-//console.log("finalyear value is: "+finalyear)
-return finalyear;
-}
-var finalyear=getyearfromDOB(dob)
-leapYearCalc(finalyear);
+
+
